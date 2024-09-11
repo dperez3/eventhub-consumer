@@ -30,7 +30,7 @@ export default function App({ clientConfiguration }: Props) {
 				const newOrderedEvents = Array.from(newEventsMap.values()).sort(
 					(a, b) => {
 						// negative if first val is less than
-						return a.sequenceNumber - b.sequenceNumber;
+						return (a.enqueuedTimeUtc as any) - (b.enqueuedTimeUtc as any);
 					},
 				);
 				setEvents(newOrderedEvents);
