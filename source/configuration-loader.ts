@@ -30,11 +30,11 @@ function loadFromCli(): ClientConfiguration {
 		  $ eventhub-consumer
 
 		Options
-			--name  Your name
+			--eventHubsResourceName		The first part of the host name (without ".servicebus.windows.net").
+			--eventHubName				The name of the event hub.
 
 		Examples
-		  $ eventhub-consumer --name=Jane
-		  Hello, Jane
+		  $ eventhub-consumer --eventHubsResourceName my-namespace --eventHubName myeventhub
 	`,
 		{
 			importMeta: import.meta,

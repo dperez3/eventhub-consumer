@@ -6,20 +6,21 @@
 
 ```bash
 $ npm install --global eventhub-consumer
+...
 ```
 
 ## CLI
 
-```
+```bash
 $ eventhub-consumer --help
 
-  Usage
-    $ eventhub-consumer
+ Usage
+  $ eventhub-consumer
 
-  Options
-    --name  Your name
+ Options
+  --eventHubsResourceName  The first part of the host name (without ".servicebus.windows.net").
+  --eventHubName    The name of the event hub.
 
-  Examples
-    $ eventhub-consumer --name=Jane
-    Hello, Jane
+ Examples
+  $ eventhub-consumer --eventHubsResourceName my-namespace --eventHubName myeventhub
 ```
