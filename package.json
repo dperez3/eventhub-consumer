@@ -8,6 +8,7 @@
 		"node": ">=16"
 	},
 	"scripts": {
+		"postinstall": "npm run build",
 		"build": "tsc",
 		"dev": "tsc --watch",
 		"test": "prettier --check . && xo && ava"
