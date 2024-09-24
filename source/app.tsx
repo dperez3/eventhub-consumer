@@ -2,15 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {Box, Static, Text, useApp, useInput} from 'ink';
 import {ReceivedEventData} from '@azure/event-hubs';
 import {DefaultAzureCredential} from '@azure/identity';
-import {ClientConfiguration, ClientOptions, mainNew} from './Components/client.js';
+import {
+	ClientConfiguration,
+	ClientOptions,
+	mainNew,
+} from './Components/client.js';
 import {EventDetails} from './Components/EventDetails.js';
 import {EventsList} from './Components/EventsList.js';
 
 type Props = {
-	clientConfiguration: ClientConfiguration
+	clientConfiguration: ClientConfiguration;
 };
 
-export default function App({ clientConfiguration }: Props) {
+export default function App({clientConfiguration}: Props) {
 	const {exit} = useApp();
 	const [events, setEvents] = useState<ReceivedEventData[]>([]);
 
@@ -34,7 +38,7 @@ export default function App({ clientConfiguration }: Props) {
 					},
 				);
 				setEvents(newOrderedEvents);
-			}
+			},
 		};
 		const r = mainNew(clientOptions);
 
@@ -44,12 +48,16 @@ export default function App({ clientConfiguration }: Props) {
 	}, []);
 
 	if (events.length == 0) {
-		return <Text dimColor={true} italic={true}>Looking for messages...</Text>
+		return (
+			<Text dimColor={true} italic={true}>
+				Looking for messages...
+			</Text>
+		);
 	}
 
 	return (
-		<Box flexWrap='wrap' flexDirection='row' minWidth={'100%'}>
-			<Box minWidth={100} width={'50%'} alignItems='flex-end'>
+		<Box flexWrap="wrap" flexDirection="row" minWidth={'100%'}>
+			<Box minWidth={100} width={'50%'} alignItems="flex-end">
 				<EventsList events={events} />
 			</Box>
 			<Box width={'50%'}>
