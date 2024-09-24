@@ -14,30 +14,30 @@ jobs:
       matrix:
         node: ['18.x', '20.x']
 
-        steps:
-          - name: Checkout repo
-            uses: actions/checkout@v3
-            with:
-              fetch-depth: 0
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-          - name: Use Node ${{ matrix }}
-            uses: actions/setup-node@v3
-            with:
-              node-version: ${{ matrix.node }}
-              cache: 'npm' # The action has a built-in functionality for caching and restoring dependencies. https://github.com/actions/setup-node/#caching-global-packages-data
+      - name: Use Node ${{ matrix }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm' # The action has a built-in functionality for caching and restoring dependencies. https://github.com/actions/setup-node/#caching-global-packages-data
 
-          - name: Install deps
-            run: npm ci
+      - name: Install deps
+        run: npm ci
 
-          - name: Build
-            run: npm run build
+      - name: Build
+        run: npm run build
 
-          - name: Format Check & Test
-            run: npm run test
+      - name: Format Check & Test
+        run: npm run test
 
-          - name: Build
-            run: yarn build
+      - name: Build
+        run: yarn build
 
-          - name: Lint current commit (last commit) with commitlint
-            if: github.event_name == 'push'
-            run: npx commitlint --from HEAD~1 --to HEAD --verbose
+      - name: Lint current commit (last commit) with commitlint
+        if: github.event_name == 'push'
+        run: npx commitlint --from HEAD~1 --to HEAD --verbose
