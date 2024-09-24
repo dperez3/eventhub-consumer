@@ -4,10 +4,14 @@ import test from 'ava';
 import {render} from 'ink-testing-library';
 import App from './source/app.js';
 
-test('no op', t => {
-	// const {lastFrame} = render(<App clientConfiguration={{ eventHubs: {} }} />);
+test('greet unknown user', t => {
+	const {lastFrame} = render(<App name={undefined} />);
 
-	// t.is(lastFrame(), `Hello, ${chalk.green('Stranger')}`);
+	t.is(lastFrame(), `Hello, ${chalk.green('Stranger')}`);
+});
 
-	t.is(1, 1);
+test('greet user with a name', t => {
+	const {lastFrame} = render(<App name="Jane" />);
+
+	t.is(lastFrame(), `Hello, ${chalk.green('Jane')}`);
 });
