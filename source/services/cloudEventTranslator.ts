@@ -1,11 +1,15 @@
-import { ReceivedEventData } from "@azure/event-hubs";
-import { CloudEvent, CloudEventV1 } from "cloudevents";
+import {ReceivedEventData} from '@azure/event-hubs';
+import {CloudEvent, CloudEventV1} from 'cloudevents';
 
-export const cloudEventsAttrPrefix = "cloudEvents:";
+export const cloudEventsAttrPrefix = 'cloudEvents:';
 
-export type JSONValue = { [x: string]: JSONValue | string | number | boolean | Array<JSONValue> };
+export type JSONValue = {
+	[x: string]: JSONValue | string | number | boolean | Array<JSONValue>;
+};
 
-export function translateToCloudEvent(azEvent: ReceivedEventData): CloudEvent<JSONValue> | null {
+export function translateToCloudEvent(
+	azEvent: ReceivedEventData,
+): CloudEvent<JSONValue> | null {
 	if (!azEvent.properties) return null;
 	// const a = Object.entries(azEvent.properties);
 
@@ -14,11 +18,11 @@ export function translateToCloudEvent(azEvent: ReceivedEventData): CloudEvent<JS
 		.map(x => {
 			return {
 				attribute: x.substring(cloudEventsAttrPrefix.length),
-				value: azEvent.properties![x]
-			}
+				value: azEvent.properties![x],
+			};
 		});
 
-	const cloudEvent: Partial<CloudEventV1<JSONValue>> = { };
+	const cloudEvent: Partial<CloudEventV1<JSONValue>> = {};
 
 	cloudEventAttributes.forEach(x => {
 		try {
@@ -32,7 +36,7 @@ export function translateToCloudEvent(azEvent: ReceivedEventData): CloudEvent<JS
 				// 	break;
 
 				default:
-					cloudEvent[x.attribute] = x.value
+					cloudEvent[x.attribute] = x.value;
 					break;
 			}
 		} catch (error) {

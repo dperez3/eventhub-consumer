@@ -1,6 +1,6 @@
-import meow from "meow";
-import { ClientConfiguration } from "./Components/client.js";
-import { cosmiconfig } from "cosmiconfig";
+import meow from 'meow';
+import {ClientConfiguration} from './Components/client.js';
+import {cosmiconfig} from 'cosmiconfig';
 
 export async function loadConfiguration(): Promise<ClientConfiguration> {
 	return (await loadFromConfigFile()) ?? loadFromCli();
@@ -42,19 +42,19 @@ function loadFromCli(): ClientConfiguration {
 				eventHubsResourceName: {
 					alias: 'resourceName',
 					type: 'string',
-					isRequired: true
+					isRequired: true,
 				},
 				eventHubName: {
 					alias: 'hubName',
 					type: 'string',
-					isRequired: true
+					isRequired: true,
 				},
 				consumerGroup: {
 					alias: 'grpName',
 					type: 'string',
 					isRequired: true,
-					default: '$Default'
-				}
+					default: '$Default',
+				},
 			},
 		},
 	);
@@ -63,9 +63,9 @@ function loadFromCli(): ClientConfiguration {
 		eventHubs: {
 			eventHubsResourceName: cli.flags.eventHubsResourceName,
 			eventHubName: cli.flags.eventHubName,
-			consumerGroup: cli.flags.consumerGroup
+			consumerGroup: cli.flags.consumerGroup,
 		},
-		storage: undefined
+		storage: undefined,
 	};
 
 	return clientConfiguration;
