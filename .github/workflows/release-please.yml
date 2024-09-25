@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
           # this assumes that you have created a personal access token
           # (PAT) and configured it as a GitHub action secret named
@@ -22,3 +23,31 @@ jobs:
           # this is a built-in strategy in release-please, see "Action Inputs"
           # for more options
           release-type: simple
+
+      # The logic below handles the npm publication:
+      # (from: https://github.com/googleapis/release-please-action?tab=readme-ov-file#automating-publication-to-npm)
+      - uses: actions/checkout@v4
+        # these if statements ensure that a publication only occurs when
+        # a new release is created:
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Setup Node v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Install deps
+        run: npm ci
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Build
+        run: npm run build
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Publish NPM Package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        if: ${{ steps.release.outputs.release_created }}
