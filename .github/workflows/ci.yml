@@ -36,10 +36,6 @@ jobs:
         continue-on-error: true
         run: npm run test
 
-      - name: Test ref
-        continue-on-error: true
-        run: echo ${{ github.ref }}
-
       - name: Lint current commit (last commit) with commitlint
         # Only run once (on the latest Node version)
         if: github.ref != 'refs/heads/main' && matrix.node == '20.x'
