@@ -26,6 +26,7 @@
 		"prompt",
 		"npx"
 	],
+	"description": "Browse your Azure Event Hub events with a terminal-based UI.",
 	"scripts": {
 		"postinstall": "npm run build",
 		"build": "tsc",
