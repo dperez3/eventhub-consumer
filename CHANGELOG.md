@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.1](https://github.com/dperez3/eventhub-consumer/compare/v1.1.0...v1.1.1) (2024-11-15)
+
+
+### Features
+
+* **release:** using "feat" to force a release ([#19](https://github.com/dperez3/eventhub-consumer/issues/19)) ([f61a139](https://github.com/dperez3/eventhub-consumer/commit/f61a139baa7bb993c1b9aa9cfe7250dd1204ce96))
+
+
+### Documentation
+
+* **package.json:** add description ([#17](https://github.com/dperez3/eventhub-consumer/issues/17)) ([53a979b](https://github.com/dperez3/eventhub-consumer/commit/53a979b54450f59a05afc9d6fec16147d8596a67))
+* **readme:** center badge ([#20](https://github.com/dperez3/eventhub-consumer/issues/20)) ([df77b74](https://github.com/dperez3/eventhub-consumer/commit/df77b74aa2a5809e6a8842720888a2a9403893a2))
+
 ## [1.1.0](https://github.com/dperez3/eventhub-consumer/compare/v1.0.0...v1.1.0) (2024-11-15)
 
 
