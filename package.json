@@ -27,6 +27,9 @@
 		"npx"
 	],
 	"description": "Browse your Azure Event Hub events with a terminal-based UI.",
+	"repository": {
+		"url": "https://github.com/dperez3/eventhub-consumer"
+	},
 	"scripts": {
 		"postinstall": "npm run build",
 		"build": "tsc",
