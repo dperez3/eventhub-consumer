@@ -10,7 +10,7 @@ permissions:
 name: release-please
 
 env:
-  PRIMARY_NODE_V: '20.x'
+  PRIMARY_NODE_V: '22.x'
 
 jobs:
   release-please:

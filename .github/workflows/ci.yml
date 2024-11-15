@@ -6,7 +6,7 @@ permissions:
   contents: read
 
 env:
-  PRIMARY_NODE_V: '20.x'
+  PRIMARY_NODE_V: '22.x'
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: ['18.x', '20.x']
+        node: ['20.x', '22.x']
 
     steps:
       - name: Checkout '${{ github.ref_name }}' branch
