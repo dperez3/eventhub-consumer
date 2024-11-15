@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    name: Build on Node ${{ matrix.node }}
+    name: Build on Node '${{ matrix.node }}'
 
     runs-on: ubuntu-latest
     strategy:
@@ -18,12 +18,12 @@ jobs:
         node: ['18.x', '20.x']
 
     steps:
-      - name: Checkout repo
+      - name: Checkout '${{ github.ref_name }}' branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: ${{ github.ref_name }}
 
-      - name: Use Node ${{ matrix }}
+      - name: Use Node '${{ matrix.node }}'
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
@@ -44,13 +44,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref_name != 'main'
     steps:
-      - name: Checkout '${{ github.ref_name }}'
+      - name: Checkout '${{ github.ref_name }}' branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}
           sparse-checkout: .
 
-      - name: Use Node ${{ env.PRIMARY_NODE_V }}
+      - name: Use Node '${{ env.PRIMARY_NODE_V }}'
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.PRIMARY_NODE_V }}
