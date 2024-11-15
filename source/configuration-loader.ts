@@ -7,8 +7,13 @@ export async function loadConfiguration(): Promise<ClientConfiguration> {
 }
 
 async function loadFromConfigFile(): Promise<ClientConfiguration | null> {
+	const configFileName = checkConfigPathArgument();
+
 	const explorer = cosmiconfig('eventhub-consumer');
-	const config = await explorer.search();
+	const config =
+		configFileName == null
+			? await explorer.search()
+			: await explorer.load(configFileName);
 
 	if (config == null) return null;
 
@@ -23,6 +28,16 @@ async function loadFromConfigFile(): Promise<ClientConfiguration | null> {
 	return Promise.resolve(config?.config);
 }
 
+function checkConfigPathArgument(): string | null {
+	const args = process.argv.slice(2);
+
+	if (args.length == 1) {
+		return args[0] ?? null;
+	}
+
+	return null;
+}
+
 function loadFromCli(): ClientConfiguration {
 	const cli = meow(
 		`
@@ -30,10 +45,19 @@ function loadFromCli(): ClientConfiguration {
 		  $ eventhub-consumer
 
 		Options
+			------------------------------------------------------------------------------------------------
+			(No arguments)				Searches for a default config file. See 'cosmicconfig'.
+			------------------------------------------------------------------------------------------------
+			{config filepath}			The path to the config file to use. See 'cosmicconfig'.
+			------------------------------------------------------------------------------------------------
 			--eventHubsResourceName		The first part of the host name (without ".servicebus.windows.net").
 			--eventHubName				The name of the event hub.
+			------------------------------------------------------------------------------------------------
 
 		Examples
+		  $ eventhub-consumer
+		  $ eventhub-consumer eventhub-consumer.dev.config.ts
+		  $ eventhub-consumer eventhub-consumer.qa.config.ts
 		  $ eventhub-consumer --eventHubsResourceName my-namespace --eventHubName myeventhub
 	`,
 		{
