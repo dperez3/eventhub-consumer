@@ -1,3 +1,5 @@
+[![CI](https://github.com/dperez3/eventhub-consumer/actions/workflows/ci.yml/badge.svg)](https://github.com/dperez3/eventhub-consumer/actions/workflows/ci.yml)
+
 - [eventhub-consumer](#eventhub-consumer)
   - [CLI](#cli)
     - [Config File](#config-file)
