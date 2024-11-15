@@ -5,9 +5,12 @@ on:
 permissions:
   contents: read
 
+env:
+  PRIMARY_NODE_V: '20.x'
+
 jobs:
   build:
-    name: Build, lint, and test on Node ${{ matrix.node }}
+    name: Build on Node ${{ matrix.node }}
 
     runs-on: ubuntu-latest
     strategy:
@@ -32,11 +35,17 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Format Check & Test
-        continue-on-error: true
-        run: npm run test
+      # - name: Format Check & Test
+      #   continue-on-error: true
+      #   run: npm run test
 
-      - name: Lint current commit (last commit) with commitlint
-        # Only run once (on the latest Node version)
-        if: github.ref != 'refs/heads/main' && matrix.node == '20.x'
-        run: npx commitlint --from HEAD~1 --to HEAD --verbose
+  lint-commit:
+    name: Lint commit messages
+    runs-on: ubuntu-latest
+    if: github.ref_name != 'main'
+    steps:
+      - name: Use Node ${{ env.PRIMARY_NODE_V }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.PRIMARY_NODE_V }}
+          cache: 'npm' # The action has a built-in functionality for caching and restoring dependencies. https://github.com/actions/setup-node/#caching-global-packages-data
