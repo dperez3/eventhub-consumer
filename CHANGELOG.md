@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/dperez3/eventhub-consumer/compare/v1.1.1...v1.1.2) (2024-11-15)
+
+
+### Build System
+
+* **npm:** add repository link ([#21](https://github.com/dperez3/eventhub-consumer/issues/21)) ([4dce00d](https://github.com/dperez3/eventhub-consumer/commit/4dce00dea07fb727773662368cf503507b77b982))
+
 ## [1.1.1](https://github.com/dperez3/eventhub-consumer/compare/v1.1.0...v1.1.1) (2024-11-15)
 
 
