@@ -44,6 +44,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref_name != 'main'
     steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .
+
       - name: Use Node ${{ env.PRIMARY_NODE_V }}
         uses: actions/setup-node@v4
         with:
