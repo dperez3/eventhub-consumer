@@ -19,12 +19,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Use Node ${{ matrix }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: 'npm' # The action has a built-in functionality for caching and restoring dependencies. https://github.com/actions/setup-node/#caching-global-packages-data
@@ -45,7 +45,7 @@ jobs:
     if: github.ref_name != 'main'
     steps:
       - name: Use Node ${{ env.PRIMARY_NODE_V }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.PRIMARY_NODE_V }}
           cache: 'npm' # The action has a built-in functionality for caching and restoring dependencies. https://github.com/actions/setup-node/#caching-global-packages-data
