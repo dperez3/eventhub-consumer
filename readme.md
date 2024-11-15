@@ -1,4 +1,6 @@
-[![CI](https://github.com/dperez3/eventhub-consumer/actions/workflows/ci.yml/badge.svg)](https://github.com/dperez3/eventhub-consumer/actions/workflows/ci.yml)
+<p align="center">
+  <a href="https://github.com/dperez3/eventhub-consumer/actions/workflows/ci.yml"><img src="https://github.com/dperez3/eventhub-consumer/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+</p>
 
 - [eventhub-consumer](#eventhub-consumer)
   - [CLI](#cli)
