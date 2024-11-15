@@ -31,7 +31,7 @@ async function loadFromConfigFile(): Promise<ClientConfiguration | null> {
 function checkConfigPathArgument(): string | null {
 	const args = process.argv.slice(2);
 
-	if (args.length == 1) {
+	if (args.length == 1 && !args.includes('--help')) {
 		return args[0] ?? null;
 	}
 
