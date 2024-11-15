@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
           # this is a built-in strategy in release-please, see "Action Inputs"
           # for more options
-          release-type: simple
+          release-type: node
 
       # The logic below handles the npm publication:
       # (from: https://github.com/googleapis/release-please-action?tab=readme-ov-file#automating-publication-to-npm)
