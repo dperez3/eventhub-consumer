@@ -7,6 +7,25 @@
 	"engines": {
 		"node": ">=16"
 	},
+	"keywords": [
+		"azure",
+		"cli",
+		"event",
+		"hub",
+		"eventhub",
+		"eventhubs",
+		"events",
+		"hubs",
+		"test",
+		"testing",
+		"diagnostic",
+		"view",
+		"terminal",
+		"command",
+		"line",
+		"prompt",
+		"npx"
+	],
 	"scripts": {
 		"postinstall": "npm run build",
 		"build": "tsc",
