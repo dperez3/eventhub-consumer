@@ -9,6 +9,9 @@ permissions:
 
 name: release-please
 
+env:
+  PRIMARY_NODE_V: '22.x'
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -31,10 +34,10 @@ jobs:
         # a new release is created:
         if: ${{ steps.release.outputs.release_created }}
 
-      - name: Setup Node v20
+      - name: Setup Node ${{ env.PRIMARY_NODE_V }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ env.PRIMARY_NODE_V }}
           registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.release_created }}
 
