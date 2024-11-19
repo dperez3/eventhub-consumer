@@ -11,17 +11,17 @@ export type EventDetailsProps = {
 export const EventDetails = ({event}: EventDetailsProps) => {
 	if (!event) return <></>;
 
-	const [mode, setMode] = useState<'azure' | 'cloud'>('azure');
+	const [mode, setMode] = useState<'azure' | 'cloud'>('cloud');
 	const nextMode =
 		mode == 'azure' ? 'see Cloud Event' : 'see raw Azure message';
 
 	useInput((i, k) => {
 		if (k.leftArrow || k.rightArrow) {
-		}
-		if (mode == 'azure') {
-			setMode('cloud');
-		} else {
-			setMode('azure');
+			if (mode == 'azure') {
+				setMode('cloud');
+			} else {
+				setMode('azure');
+			}
 		}
 	});
 
