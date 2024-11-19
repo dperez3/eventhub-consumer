@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/dperez3/eventhub-consumer/compare/v1.1.2...v1.2.0) (2024-11-19)
+
+
+### Features
+
+* **eventlist:** use vertical arrow keys for changing which event to view ([#23](https://github.com/dperez3/eventhub-consumer/issues/23)) ([9d098f4](https://github.com/dperez3/eventhub-consumer/commit/9d098f4e898167cb72fff37302c689cb68d2823e))
+
 ## [1.1.2](https://github.com/dperez3/eventhub-consumer/compare/v1.1.1...v1.1.2) (2024-11-15)
 
 
