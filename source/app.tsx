@@ -18,7 +18,9 @@ export default function App({clientConfiguration}: Props) {
 	const {exit} = useApp();
 	const [events, setEvents] = useState<ReceivedEventData[]>([]);
 
-	const lastEvent = events.length > 0 ? events[events.length - 1] : undefined;
+	const [selectedEvent, setSelectedIndex] = useState<
+		ReceivedEventData | undefined
+	>(undefined);
 
 	useInput((i, k) => {
 		if (i == 'q') {
@@ -40,7 +42,7 @@ export default function App({clientConfiguration}: Props) {
 				setEvents(newOrderedEvents);
 			},
 		};
-		const r = mainNew(clientOptions);
+		mainNew(clientOptions);
 
 		return () => {
 			// end?
@@ -58,10 +60,15 @@ export default function App({clientConfiguration}: Props) {
 	return (
 		<Box flexWrap="wrap" flexDirection="row" minWidth={'100%'}>
 			<Box minWidth={100} width={'50%'} alignItems="flex-end">
-				<EventsList events={events} />
+				<EventsList
+					events={events}
+					onSelectedEventChanged={async sEvent => {
+						setSelectedIndex(sEvent);
+					}}
+				/>
 			</Box>
 			<Box width={'50%'}>
-				<EventDetails event={lastEvent} />
+				<EventDetails event={selectedEvent} />
 			</Box>
 		</Box>
 	);

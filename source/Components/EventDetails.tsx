@@ -17,11 +17,11 @@ export const EventDetails = ({event}: EventDetailsProps) => {
 
 	useInput((i, k) => {
 		if (k.leftArrow || k.rightArrow) {
-		}
-		if (mode == 'azure') {
-			setMode('cloud');
-		} else {
-			setMode('azure');
+			if (mode == 'azure') {
+				setMode('cloud');
+			} else {
+				setMode('azure');
+			}
 		}
 	});
 

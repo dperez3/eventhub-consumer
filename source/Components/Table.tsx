@@ -1,5 +1,5 @@
 // Table.tsx
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Box, Text} from 'ink';
 
 // 💙 => https://github.com/maticzav/ink-table/issues/268
@@ -28,6 +28,7 @@ type TableProps = {
 		strikethrough?: boolean;
 		dimColor?: boolean;
 	};
+	selectedIndex: number | null;
 };
 
 // Helper function to generate headers from data
@@ -43,7 +44,12 @@ function generateHeaders(data: ScalarDict[]): ScalarDict {
 	return headers;
 }
 
-const Table = ({data, showHeaders = true, headerStyles}: TableProps) => {
+const Table = ({
+	data,
+	showHeaders = true,
+	headerStyles,
+	selectedIndex,
+}: TableProps) => {
 	// Determine columns and their widths
 	const columns: Column[] = getColumns(data);
 
@@ -53,7 +59,7 @@ const Table = ({data, showHeaders = true, headerStyles}: TableProps) => {
 
 			{showHeaders && (
 				<>
-					{renderRow(generateHeaders(data), columns, {
+					{renderRow(generateHeaders(data), columns, false, {
 						color: 'blue',
 						bold: true,
 						...headerStyles,
@@ -65,7 +71,7 @@ const Table = ({data, showHeaders = true, headerStyles}: TableProps) => {
 			{data.map((row, index) => (
 				<React.Fragment key={`row-${index}`}>
 					{index !== 0 && renderRowSeparators(columns)}
-					{renderRow(row, columns)}
+					{renderRow(row, columns, index == selectedIndex)}
 				</React.Fragment>
 			))}
 			{renderFooterSeparators(columns)}
@@ -94,7 +100,12 @@ function getColumns(data: ScalarDict[]): Column[] {
 }
 
 // Helper function to render a row with separators
-function renderRow(row: ScalarDict, columns: Column[], textStyles?: any) {
+function renderRow(
+	row: ScalarDict,
+	columns: Column[],
+	isSelected: boolean,
+	textStyles?: any,
+) {
 	return (
 		<Box flexDirection="row">
 			<Text>│</Text>
@@ -103,7 +114,9 @@ function renderRow(row: ScalarDict, columns: Column[], textStyles?: any) {
 					{index !== 0 && <Text>│</Text>}
 					{/* Add separator before each cell except the first one */}
 					<Box width={column.width} justifyContent="center">
-						<Text {...textStyles}>{row[column.key]?.toString() || ''}</Text>
+						<Text bold={isSelected} {...textStyles}>
+							{row[column.key]?.toString() || ''}
+						</Text>
 					</Box>
 				</React.Fragment>
 			))}
